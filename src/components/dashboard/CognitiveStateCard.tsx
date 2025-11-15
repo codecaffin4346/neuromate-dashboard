@@ -16,17 +16,28 @@ const CognitiveStateCard = () => {
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 0.1 }}
+      className="relative"
     >
-      <Card className="bg-gradient-card shadow-card backdrop-blur-sm border-border/50 h-full">
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <Brain className="w-6 h-6 text-primary" />
-            <CardTitle>Cognitive State</CardTitle>
+      {/* Ambient glow effect */}
+      <div className="absolute inset-0 bg-gradient-glow blur-3xl opacity-30 rounded-3xl" />
+      
+      <Card className="relative bg-gradient-card shadow-card backdrop-blur-xl border-border/50 h-full overflow-hidden group hover:shadow-glow transition-shadow duration-500">
+        {/* Subtle shimmer effect on hover */}
+        <div className="absolute inset-0 bg-shimmer-gradient bg-[length:200%_100%] group-hover:animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity" />
+        
+        <CardHeader className="relative">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-2xl bg-gradient-primary shadow-glow">
+              <Brain className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <CardTitle className="text-xl">Mind Energy Ring</CardTitle>
+              <CardDescription className="text-xs">Real-time cognitive wellness</CardDescription>
+            </div>
           </div>
-          <CardDescription>Real-time mental wellness metrics</CardDescription>
         </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-3 gap-6">
+        <CardContent className="relative">
+          <div className="grid grid-cols-3 gap-8 py-4">
             <RadialProgress
               value={cognitiveState.stress}
               label="Stress"

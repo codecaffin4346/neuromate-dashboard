@@ -21,16 +21,21 @@ const Settings = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-ambient">
-      <div className="max-w-4xl mx-auto p-6 space-y-6">
+    <div className="min-h-screen bg-gradient-ambient relative overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
+      </div>
+      
+      <div className="relative max-w-4xl mx-auto p-8 space-y-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
+          className="mb-10"
         >
-          <h1 className="text-4xl font-bold text-foreground mb-2">Settings</h1>
-          <p className="text-muted-foreground">
-            Manage your tracking preferences and privacy
+          <h1 className="text-5xl font-bold text-foreground mb-3 tracking-tight">Settings</h1>
+          <p className="text-muted-foreground text-lg">
+            Customize your cognitive wellness experience
           </p>
         </motion.div>
 
@@ -38,11 +43,19 @@ const Settings = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
+          className="relative"
         >
-          <Card className="bg-gradient-card shadow-card backdrop-blur-sm">
+          <div className="absolute inset-0 bg-gradient-glow blur-3xl opacity-20 rounded-3xl" />
+          
+          <Card className="relative bg-gradient-card shadow-card backdrop-blur-xl border-border/50 hover:shadow-glow transition-shadow duration-500">
             <CardHeader>
-              <CardTitle>Signal Tracking</CardTitle>
-              <CardDescription>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-2 rounded-2xl bg-gradient-primary shadow-glow">
+                  <Keyboard className="w-5 h-5 text-white" />
+                </div>
+                <CardTitle className="text-2xl">Signal Tracking</CardTitle>
+              </div>
+              <CardDescription className="text-base">
                 Choose which signals to monitor for cognitive insights
               </CardDescription>
             </CardHeader>
@@ -139,11 +152,19 @@ const Settings = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
+          className="relative"
         >
-          <Card className="bg-gradient-card shadow-card backdrop-blur-sm">
+          <div className="absolute inset-0 bg-gradient-glow blur-3xl opacity-20 rounded-3xl" />
+          
+          <Card className="relative bg-gradient-card shadow-card backdrop-blur-xl border-border/50 hover:shadow-glow transition-shadow duration-500">
             <CardHeader>
-              <CardTitle>Appearance</CardTitle>
-              <CardDescription>Customize your dashboard experience</CardDescription>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-2 rounded-2xl bg-gradient-secondary shadow-glow">
+                  <Moon className="w-5 h-5 text-white" />
+                </div>
+                <CardTitle className="text-2xl">Appearance</CardTitle>
+              </div>
+              <CardDescription className="text-base">Customize your dashboard experience</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center justify-between">
@@ -170,11 +191,19 @@ const Settings = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
+          className="relative"
         >
-          <Card className="bg-gradient-card shadow-card backdrop-blur-sm border-destructive/20">
+          <div className="absolute inset-0 bg-destructive/10 blur-3xl opacity-30 rounded-3xl" />
+          
+          <Card className="relative bg-gradient-card shadow-card backdrop-blur-xl border-destructive/30 hover:shadow-glow transition-shadow duration-500">
             <CardHeader>
-              <CardTitle className="text-destructive">Data Management</CardTitle>
-              <CardDescription>Export or delete your wellness data</CardDescription>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="p-2 rounded-2xl bg-gradient-stress shadow-glow">
+                  <Trash2 className="w-5 h-5 text-white" />
+                </div>
+                <CardTitle className="text-destructive text-2xl">Data Management</CardTitle>
+              </div>
+              <CardDescription className="text-base">Export or delete your wellness data</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
               <Button variant="outline" className="w-full">

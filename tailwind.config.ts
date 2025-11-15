@@ -96,28 +96,69 @@ export default {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.7" },
         },
+        "breathe": {
+          "0%, 100%": { 
+            transform: "scale(1)",
+            opacity: "1"
+          },
+          "50%": { 
+            transform: "scale(1.05)",
+            opacity: "0.8"
+          },
+        },
         "float": {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-10px)" },
         },
         "glow": {
-          "0%": { boxShadow: "0 0 20px hsl(var(--primary) / 0.2)" },
-          "100%": { boxShadow: "0 0 40px hsl(var(--primary) / 0.4)" },
+          "0%, 100%": { boxShadow: "var(--shadow-glow)" },
+          "50%": { boxShadow: "var(--shadow-glow-hover)" },
         },
+        "glow-pulse": {
+          "0%, 100%": { 
+            opacity: "0.5",
+            transform: "scale(1)"
+          },
+          "50%": { 
+            opacity: "0.8",
+            transform: "scale(1.1)"
+          },
+        },
+        "fade-in-up": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px)"
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)"
+          }
+        },
+        "shimmer": {
+          "0%": { backgroundPosition: "-200% center" },
+          "100%": { backgroundPosition: "200% center" }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "pulse-soft": "pulse-soft 3s ease-in-out infinite",
+        "breathe": "breathe 4s ease-in-out infinite",
         "float": "float 6s ease-in-out infinite",
-        "glow": "glow 2s ease-in-out infinite alternate",
+        "glow": "glow 3s ease-in-out infinite",
+        "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+        "fade-in-up": "fade-in-up 0.5s ease-out",
+        "shimmer": "shimmer 3s linear infinite"
       },
       backgroundImage: {
         "gradient-ambient": "var(--gradient-ambient)",
         "gradient-card": "var(--gradient-card)",
         "gradient-primary": "var(--gradient-primary)",
+        "gradient-secondary": "var(--gradient-secondary)",
         "gradient-stress": "var(--gradient-stress)",
         "gradient-calm": "var(--gradient-calm)",
+        "gradient-glow": "var(--gradient-glow)",
+        "shimmer-gradient": "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.1), transparent)",
       },
       boxShadow: {
         "soft": "var(--shadow-soft)",

@@ -41,16 +41,25 @@ const AgentChat = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.5 }}
+      className="relative"
     >
-      <Card className="bg-gradient-card shadow-card backdrop-blur-sm border-border/50">
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <MessageSquare className="w-6 h-6 text-primary" />
-            <CardTitle>Agent Messages</CardTitle>
+      <div className="absolute inset-0 bg-gradient-glow blur-3xl opacity-20 rounded-3xl" />
+      
+      <Card className="relative bg-gradient-card shadow-card backdrop-blur-xl border-border/50 overflow-hidden group hover:shadow-glow transition-shadow duration-500">
+        <div className="absolute inset-0 bg-shimmer-gradient bg-[length:200%_100%] group-hover:animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity" />
+        
+        <CardHeader className="relative">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-2xl bg-gradient-primary shadow-glow animate-pulse-soft">
+              <MessageSquare className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <CardTitle className="text-xl">AI Agent Chat</CardTitle>
+              <CardDescription className="text-xs">Personalized wellness insights</CardDescription>
+            </div>
           </div>
-          <CardDescription>AI-powered insights and recommendations</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="relative">
           <ScrollArea className="h-[400px] pr-4">
             <div className="space-y-4">
               {messages.map((message, index) => {
@@ -61,22 +70,29 @@ const AgentChat = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.6 + index * 0.1 }}
-                    className={`p-4 rounded-2xl border backdrop-blur-sm ${
+                    className={`relative p-5 rounded-3xl border backdrop-blur-xl ${
                       agentColors[message.type as keyof typeof agentColors]
-                    }`}
+                    } hover:scale-[1.02] transition-transform duration-300`}
                   >
-                    <div className="flex items-start gap-3">
-                      <div className="flex-shrink-0">
-                        <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center">
-                          <Icon className="w-5 h-5 text-white" />
+                    {/* Subtle inner glow */}
+                    <div className="absolute inset-0 rounded-3xl bg-gradient-glow opacity-30" />
+                    
+                    <div className="relative flex items-start gap-4">
+                      <motion.div 
+                        className="flex-shrink-0"
+                        animate={{ scale: [1, 1.05, 1] }}
+                        transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
+                      >
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-primary shadow-glow flex items-center justify-center">
+                          <Icon className="w-6 h-6 text-white" />
                         </div>
-                      </div>
-                      <div className="flex-1 space-y-2">
+                      </motion.div>
+                      <div className="flex-1 space-y-3">
                         <div className="flex items-center justify-between">
-                          <Badge variant="secondary" className="font-medium">
+                          <Badge variant="secondary" className="font-semibold text-xs px-3 py-1">
                             {message.agent}
                           </Badge>
-                          <span className="text-xs text-muted-foreground">
+                          <span className="text-xs text-muted-foreground font-medium">
                             {message.time}
                           </span>
                         </div>
