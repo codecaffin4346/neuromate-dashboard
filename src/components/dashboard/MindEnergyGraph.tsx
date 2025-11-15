@@ -22,53 +22,90 @@ const MindEnergyGraph = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.4 }}
+      className="relative"
     >
-      <Card className="bg-gradient-card shadow-card backdrop-blur-sm border-border/50">
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <TrendingUp className="w-6 h-6 text-primary" />
-            <CardTitle>Mind Energy Timeline</CardTitle>
+      <div className="absolute inset-0 bg-gradient-glow blur-3xl opacity-20 rounded-3xl" />
+      
+      <Card className="relative bg-gradient-card shadow-card backdrop-blur-xl border-border/50 overflow-hidden group hover:shadow-glow transition-shadow duration-500">
+        <div className="absolute inset-0 bg-shimmer-gradient bg-[length:200%_100%] group-hover:animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity" />
+        
+        <CardHeader className="relative">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-2xl bg-gradient-primary shadow-glow">
+              <TrendingUp className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <CardTitle className="text-xl">Mind Energy Timeline</CardTitle>
+              <CardDescription className="text-xs">Cognitive energy flow throughout your day</CardDescription>
+            </div>
           </div>
-          <CardDescription>Your cognitive energy levels throughout the day</CardDescription>
         </CardHeader>
-        <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
+        <CardContent className="relative pt-2">
+          <ResponsiveContainer width="100%" height={320}>
             <AreaChart data={data}>
               <defs>
                 <linearGradient id="energyGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.3} />
+                  <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.4} />
+                  <stop offset="50%" stopColor="hsl(var(--secondary))" stopOpacity={0.2} />
                   <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0} />
                 </linearGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
+              <CartesianGrid 
+                strokeDasharray="3 3" 
+                stroke="hsl(var(--border))" 
+                opacity={0.2}
+                vertical={false}
+              />
               <XAxis
                 dataKey="time"
                 stroke="hsl(var(--muted-foreground))"
-                fontSize={12}
+                fontSize={11}
                 tickLine={false}
+                axisLine={false}
+                dy={10}
               />
               <YAxis
                 stroke="hsl(var(--muted-foreground))"
-                fontSize={12}
+                fontSize={11}
                 tickLine={false}
+                axisLine={false}
                 domain={[0, 100]}
+                dx={-10}
               />
               <Tooltip
                 contentStyle={{
                   backgroundColor: "hsl(var(--card))",
                   border: "1px solid hsl(var(--border))",
-                  borderRadius: "12px",
-                  boxShadow: "var(--shadow-card)",
+                  borderRadius: "16px",
+                  boxShadow: "var(--shadow-glow)",
+                  backdropFilter: "blur(12px)",
                 }}
-                labelStyle={{ color: "hsl(var(--foreground))" }}
+                labelStyle={{ 
+                  color: "hsl(var(--foreground))",
+                  fontWeight: 600,
+                  marginBottom: "4px"
+                }}
+                itemStyle={{
+                  color: "hsl(var(--primary))",
+                  fontWeight: 500
+                }}
               />
               <Area
                 type="monotone"
                 dataKey="energy"
                 stroke="hsl(var(--primary))"
-                strokeWidth={3}
+                strokeWidth={4}
                 fill="url(#energyGradient)"
-                animationDuration={1000}
+                animationDuration={1500}
+                animationEasing="ease-out"
+                filter="url(#glow)"
               />
             </AreaChart>
           </ResponsiveContainer>

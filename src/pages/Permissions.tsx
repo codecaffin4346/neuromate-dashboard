@@ -51,27 +51,37 @@ const Permissions = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-ambient">
-      <div className="max-w-3xl mx-auto p-6 space-y-6">
+    <div className="min-h-screen bg-gradient-ambient relative overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-float" style={{ animationDelay: "1.5s" }} />
+      </div>
+      
+      <div className="relative max-w-3xl mx-auto p-8 space-y-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8"
+          className="text-center mb-10"
         >
-          <div className="flex justify-center mb-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-glow">
-              <Shield className="w-8 h-8 text-white" />
-            </div>
+          <div className="flex justify-center mb-6">
+            <motion.div 
+              className="relative w-20 h-20 rounded-3xl bg-gradient-primary shadow-glow flex items-center justify-center"
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              <Shield className="w-10 h-10 text-white" />
+              <div className="absolute inset-0 rounded-3xl bg-gradient-primary blur-xl opacity-50 animate-breathe" />
+            </motion.div>
           </div>
-          <h1 className="text-4xl font-bold text-foreground mb-2">
+          <h1 className="text-5xl font-bold text-foreground mb-4 tracking-tight">
             Privacy & Permissions
           </h1>
-          <p className="text-muted-foreground max-w-lg mx-auto">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
             NeuroMate needs access to certain sensors to provide personalized cognitive wellness insights. Your data is processed locally and never shared.
           </p>
         </motion.div>
 
-        <div className="space-y-4">
+        <div className="space-y-6">
           {permissions.map((permission, index) => {
             const Icon = permission.icon;
             const isGranted = granted[permission.id];
@@ -82,35 +92,50 @@ const Permissions = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 + index * 0.1 }}
+                className="relative"
               >
-                <Card className="bg-gradient-card shadow-card backdrop-blur-sm border-border/50">
-                  <CardHeader>
+                <div className="absolute inset-0 bg-gradient-glow blur-3xl opacity-20 rounded-3xl" />
+                
+                <Card className="relative bg-gradient-card shadow-card backdrop-blur-xl border-border/50 overflow-hidden hover:shadow-glow transition-all duration-500 group">
+                  <div className="absolute inset-0 bg-shimmer-gradient bg-[length:200%_100%] group-hover:animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity" />
+                  
+                  <CardHeader className="relative">
                     <div className="flex items-start justify-between">
-                      <div className="flex items-start gap-4">
-                        <div className={`w-12 h-12 rounded-xl bg-muted/50 flex items-center justify-center ${permission.color}`}>
-                          <Icon className="w-6 h-6" />
-                        </div>
-                        <div>
-                          <CardTitle className="text-lg mb-1">
+                      <div className="flex items-start gap-5">
+                        <motion.div 
+                          className={`w-16 h-16 rounded-2xl bg-muted/20 backdrop-blur-sm flex items-center justify-center ${permission.color} border border-border/30`}
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ type: "spring", stiffness: 400 }}
+                        >
+                          <Icon className="w-7 h-7" />
+                        </motion.div>
+                        <div className="flex-1">
+                          <CardTitle className="text-xl mb-2">
                             {permission.title}
                           </CardTitle>
-                          <CardDescription>
+                          <CardDescription className="text-sm leading-relaxed">
                             {permission.description}
                           </CardDescription>
                         </div>
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="relative">
                     {isGranted ? (
-                      <div className="flex items-center gap-2 text-success">
-                        <Check className="w-5 h-5" />
-                        <span className="font-medium">Permission Granted</span>
-                      </div>
+                      <motion.div 
+                        className="flex items-center gap-3 text-success p-4 rounded-2xl bg-success/10 border border-success/20"
+                        initial={{ scale: 0.9 }}
+                        animate={{ scale: 1 }}
+                      >
+                        <div className="p-2 rounded-full bg-success/20">
+                          <Check className="w-5 h-5" />
+                        </div>
+                        <span className="font-semibold">Access Granted</span>
+                      </motion.div>
                     ) : (
                       <Button
                         onClick={() => requestPermission(permission.id)}
-                        className="w-full"
+                        className="w-full h-12 text-base font-semibold rounded-2xl bg-gradient-primary hover:shadow-glow transition-all duration-300"
                       >
                         Grant Access
                       </Button>
@@ -126,12 +151,20 @@ const Permissions = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6 }}
+          className="relative"
         >
-          <Card className="bg-muted/30 border-border/50">
+          <div className="absolute inset-0 bg-gradient-glow blur-3xl opacity-10 rounded-3xl" />
+          
+          <Card className="relative bg-gradient-card/50 backdrop-blur-xl border-border/30">
             <CardContent className="pt-6">
-              <p className="text-sm text-muted-foreground text-center">
-                🔒 All data is encrypted and processed locally on your device. You can revoke these permissions at any time in Settings.
-              </p>
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 p-2 rounded-xl bg-primary/10">
+                  <Shield className="w-5 h-5 text-primary" />
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  🔒 All data is encrypted and processed locally on your device. You can revoke these permissions at any time in Settings.
+                </p>
+              </div>
             </CardContent>
           </Card>
         </motion.div>

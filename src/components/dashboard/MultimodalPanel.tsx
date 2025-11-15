@@ -62,16 +62,25 @@ const MultimodalPanel = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
+      className="relative"
     >
-      <Card className="bg-gradient-card shadow-card backdrop-blur-sm border-border/50">
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <Activity className="w-6 h-6 text-primary" />
-            <CardTitle>Multimodal Signals</CardTitle>
+      <div className="absolute inset-0 bg-gradient-glow blur-3xl opacity-20 rounded-3xl" />
+      
+      <Card className="relative bg-gradient-card shadow-card backdrop-blur-xl border-border/50 overflow-hidden group hover:shadow-glow transition-shadow duration-500">
+        <div className="absolute inset-0 bg-shimmer-gradient bg-[length:200%_100%] group-hover:animate-shimmer opacity-0 group-hover:opacity-100 transition-opacity" />
+        
+        <CardHeader className="relative">
+          <div className="flex items-center gap-3">
+            <div className="p-2 rounded-2xl bg-gradient-primary shadow-glow animate-breathe">
+              <Activity className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <CardTitle className="text-xl">Multimodal Sensors</CardTitle>
+              <CardDescription className="text-xs">Real-time behavioral insights</CardDescription>
+            </div>
           </div>
-          <CardDescription>Real-time behavioral and physiological metrics</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="relative">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
             {signals.map((signal, index) => (
               <SignalMetric key={signal.title} signal={signal} index={index} />

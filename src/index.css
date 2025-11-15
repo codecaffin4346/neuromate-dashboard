@@ -8,35 +8,38 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 216 33% 97%;
+    /* Premium Cloud White base */
+    --background: 220 20% 98%;
     --foreground: 222 47% 11%;
 
+    /* Glassmorphic cards */
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    /* Mind blue - primary cognitive actions */
+    /* Serenity Blue - primary cognitive actions */
     --primary: 227 100% 65%;
     --primary-foreground: 0 0% 100%;
+    --primary-glow: 227 100% 75%;
 
-    /* Calm teal - accent for wellness */
+    /* Calm Teal - wellness & balance */
     --secondary: 174 74% 41%;
     --secondary-foreground: 0 0% 100%;
 
-    /* Soft purple - focus & creativity */
+    /* Lavender Aura - focus & creativity */
     --accent: 257 100% 75%;
-    --accent-foreground: 222 47% 11%;
+    --accent-foreground: 0 0% 100%;
 
-    --muted: 216 33% 94%;
+    --muted: 220 20% 95%;
     --muted-foreground: 215 16% 47%;
 
-    /* Warm yellow - energy & positivity */
+    /* Energy Yellow - positivity */
     --warning: 42 90% 66%;
     --warning-foreground: 222 47% 11%;
 
-    /* Stress indicators */
+    /* Stress indicators - soft coral */
     --stress: 14 90% 65%;
     --stress-foreground: 0 0% 100%;
 
@@ -47,44 +50,44 @@ All colors MUST be HSL.
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 216 33% 88%;
-    --input: 216 33% 88%;
+    --border: 220 20% 92%;
+    --input: 220 20% 92%;
     --ring: 227 100% 65%;
 
-    --radius: 1rem;
+    --radius: 1.5rem;
 
-    /* Custom design tokens */
-    --gradient-ambient: linear-gradient(135deg, hsl(227 100% 65% / 0.05) 0%, hsl(174 74% 41% / 0.05) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.8) 0%, hsl(216 33% 97% / 0.9) 100%);
+    /* Premium gradients - soft and ambient */
+    --gradient-ambient: radial-gradient(ellipse at top, hsl(227 100% 65% / 0.08) 0%, hsl(174 74% 41% / 0.05) 50%, transparent 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.95) 0%, hsl(220 20% 98% / 0.9) 100%);
     --gradient-primary: linear-gradient(135deg, hsl(227 100% 65%) 0%, hsl(257 100% 75%) 100%);
-    --gradient-stress: linear-gradient(135deg, hsl(14 90% 65%) 0%, hsl(28 90% 60%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(174 74% 41%) 0%, hsl(227 100% 65%) 100%);
+    --gradient-stress: linear-gradient(135deg, hsl(14 90% 65%) 0%, hsl(42 90% 66%) 100%);
     --gradient-calm: linear-gradient(135deg, hsl(174 74% 41%) 0%, hsl(174 74% 51%) 100%);
+    --gradient-glow: radial-gradient(circle at center, hsl(227 100% 65% / 0.15) 0%, transparent 70%);
     
-    --shadow-soft: 0 2px 8px hsl(222 47% 11% / 0.04);
-    --shadow-card: 0 4px 24px hsl(222 47% 11% / 0.06);
-    --shadow-glow: 0 0 32px hsl(227 100% 65% / 0.12);
+    /* Premium shadows - soft elevation */
+    --shadow-soft: 0 2px 12px hsl(222 47% 11% / 0.03);
+    --shadow-card: 0 8px 32px hsl(222 47% 11% / 0.08);
+    --shadow-glow: 0 0 48px hsl(227 100% 65% / 0.15);
+    --shadow-glow-hover: 0 0 64px hsl(227 100% 65% / 0.25);
     
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* Smooth premium transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-glow: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
+    /* Graphite Grey base with soft glow */
     --background: 222 47% 7%;
     --foreground: 210 40% 98%;
 
@@ -96,6 +99,7 @@ All colors MUST be HSL.
 
     --primary: 227 100% 65%;
     --primary-foreground: 0 0% 100%;
+    --primary-glow: 227 100% 75%;
 
     --secondary: 174 74% 41%;
     --secondary-foreground: 0 0% 100%;
@@ -122,11 +126,14 @@ All colors MUST be HSL.
     --input: 217 33% 20%;
     --ring: 227 100% 65%;
 
-    --gradient-ambient: linear-gradient(135deg, hsl(227 100% 65% / 0.08) 0%, hsl(174 74% 41% / 0.08) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(222 47% 13% / 0.8) 0%, hsl(222 47% 11% / 0.9) 100%);
-    --shadow-soft: 0 2px 8px hsl(0 0% 0% / 0.2);
-    --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.3);
-    --shadow-glow: 0 0 32px hsl(227 100% 65% / 0.2);
+    --gradient-ambient: radial-gradient(ellipse at top, hsl(227 100% 65% / 0.12) 0%, hsl(174 74% 41% / 0.08) 50%, transparent 100%);
+    --gradient-card: linear-gradient(145deg, hsl(222 47% 13% / 0.95) 0%, hsl(222 47% 11% / 0.9) 100%);
+    --gradient-glow: radial-gradient(circle at center, hsl(227 100% 65% / 0.2) 0%, transparent 70%);
+    --shadow-soft: 0 2px 12px hsl(0 0% 0% / 0.3);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 48px hsl(227 100% 65% / 0.25);
+    --shadow-glow-hover: 0 0 64px hsl(227 100% 65% / 0.35);
+    
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
